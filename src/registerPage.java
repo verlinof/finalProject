@@ -36,12 +36,14 @@ public class registerPage extends connectTable{
                 String username = TfUsername.getText();
                 String password = new String(PfPassword.getPassword());
                 String rePassword = new String(PfRePassword.getPassword());
+                String ecnryptedPassword = security.encryption.encrypt(new String(PfPassword.getPassword()));
+                System.out.println(ecnryptedPassword);
                 try{
                     if(checkInput(TfUsername,PfPassword)){
                         if(checkPassword(PfPassword,PfRePassword)){
                             pst = getConn().prepareStatement("INSERT INTO user (username, password)" + "VALUES(?, ?)");
                             pst.setString(1,username);
-                            pst.setString(2,password);
+                            pst.setString(2,ecnryptedPassword);
                             try {
                                 pst.executeUpdate();
                                 JOptionPane.showMessageDialog(frame, "Registrasi Berhasil!");

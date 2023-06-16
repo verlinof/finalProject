@@ -1,7 +1,7 @@
 package security;
 
 public class encryption {
-    public static String encrypt(String plaintext, int shift) {
+    public static String encrypt(String plaintext) {
         StringBuilder ciphertext = new StringBuilder();
 
         for (int i = 0; i < plaintext.length(); i++) {
@@ -9,10 +9,10 @@ public class encryption {
 
             if (Character.isLetter(ch)) {
                 if (Character.isUpperCase(ch)) {
-                    char encryptedChar = (char) (((ch - 'A' + shift) % 26) + 'A');
+                    char encryptedChar = (char) (((ch - 'A' + 3) % 26) + 'A');
                     ciphertext.append(encryptedChar);
                 } else {
-                    char encryptedChar = (char) (((ch - 'a' + shift) % 26) + 'a');
+                    char encryptedChar = (char) (((ch - 'a' + 3) % 26) + 'a');
                     ciphertext.append(encryptedChar);
                 }
             } else {

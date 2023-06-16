@@ -34,11 +34,12 @@ public class loginPage extends connectTable{
                 try{
                     String username = TfUsername.getText();
                     String password = new String(PfPassword.getPassword());
+                    String encryptedPassword = security.encryption.encrypt(password);
 
                     //execute sql
                     pst = getConn().prepareStatement("select * from user where username = ? and password = ?");
                     pst.setString(1,username);
-                    pst.setString(2,password);
+                    pst.setString(2,encryptedPassword);
                     rs = pst.executeQuery();
 
                     if(rs.next()){
