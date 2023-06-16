@@ -37,7 +37,6 @@ public class registerPage extends connectTable{
                 String password = new String(PfPassword.getPassword());
                 String rePassword = new String(PfRePassword.getPassword());
                 String ecnryptedPassword = security.encryption.encrypt(new String(PfPassword.getPassword()));
-                System.out.println(ecnryptedPassword);
                 try{
                     if(checkInput(TfUsername,PfPassword)){
                         if(checkPassword(PfPassword,PfRePassword)){
