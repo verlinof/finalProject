@@ -9,8 +9,8 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class inputPage extends connectTable {
     private JTextField tfNIK;
     private JTextField tfNama;
-    private JComboBox tfJK;
-    private JComboBox tfKasus;
+    private JComboBox cbJK;
+    private JComboBox cbKasus;
     private JButton submitButton;
     private JButton kembaliButton;
     private JPanel InputGUII;
@@ -32,7 +32,9 @@ public class inputPage extends connectTable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 submit();
-
+                tfNIK.setText("");
+                tfNama.setText("");
+                tfdeskripsi.setText("");
             }
         });
         kembaliButton.addActionListener(new ActionListener() {
@@ -51,8 +53,8 @@ public class inputPage extends connectTable {
     private void submit() {
         String nik = tfNIK.getText();
         String nama = tfNama.getText();
-        String kelamin = tfJK.getSelectedItem().toString();
-        String kasus = tfKasus.getSelectedItem().toString();
+        String kelamin = cbJK.getSelectedItem().toString();
+        String kasus = cbKasus.getSelectedItem().toString();
         String deskripsi = tfdeskripsi.getText();
 
         if (nik.isEmpty() || nama.isEmpty() || kelamin.isEmpty() || kasus.isEmpty() || deskripsi.isEmpty()) {

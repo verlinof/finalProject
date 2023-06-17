@@ -16,8 +16,9 @@ public class outputSortingPage extends connectTable{
     private Statement stmt;
 
     public outputSortingPage(JFrame parent){
-        connect();
-        table_load(dataTable);
+        //Untuk tampilan GUI nya
+        connect(); //untuk memanggil method superclass untuk connect ke database
+        table_load(dataTable); //untuk ngeload data yang diambil dari database ke dalam tabel
         JFrame frame = new JFrame("Halaman Sorting");
         frame.setContentPane(outputSortingPanel);
         frame.setSize(750,500);
@@ -27,12 +28,12 @@ public class outputSortingPage extends connectTable{
         frame.setResizable(false);
         frame.setVisible(true);
 
-        BtnSearch.addActionListener(new ActionListener() {
+        BtnSearch.addActionListener(new ActionListener() { //
             @Override
             public void actionPerformed(ActionEvent e) {
                 String jenisKasus = CbCariKasus.getSelectedItem().toString();
                 if(jenisKasus.equalsIgnoreCase("Semua Kasus")){
-                    sortingTableLoadAll(jenisKasus);
+                    table_load(dataTable);
                 }
                 else{
                     sortingTableLoad(jenisKasus);
@@ -46,17 +47,6 @@ public class outputSortingPage extends connectTable{
                 new mainPage(null);
             }
         });
-    }
-
-    //method untuk sortingan beberapa kasus saja atau semuanya
-    public void sortingTableLoadAll(String jenisKasus){
-        try {
-            pst = getConn().prepareStatement("select * from kasus");
-            rs = pst.executeQuery();
-            dataTable.setModel(DbUtils.resultSetToTableModel(rs));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     //buat ngeload full kasus
